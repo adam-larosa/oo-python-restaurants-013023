@@ -12,32 +12,15 @@ For our purposes, a `Restaurant` has many `Review`s, a `Customer` has many
 **Note**: You should draw your domain on paper or on a whiteboard _before you
 start coding_. Remember to identify a single source of truth for your data.
 
-## Topics
-
-- SQLAlchemy Migrations
-- SQLAlchemy Relationships
-- Class and Instance Methods
-- SQLAlchemy Querying
-
-***
-
 ## Instructions
 
-To get started, run `pipenv install` while inside of this directory.
-
-Build out all of the methods listed in the deliverables. The methods are listed
+Build out all of the functionality listed in the deliverables. The deliverables are listed
 in a suggested order, but you can feel free to tackle the ones you think are
-easiest. Be careful: some of the later methods rely on earlier ones.
-
-**Remember!** This code challenge has tests you can run by changing into the `lib` directory and
-running `pytest`.
-
+easiest. Be careful: some of the later deliverables may rely on earlier ones.
 
 We've provided you with a tool that you can use to test your code. To use it,
 run `python debug.py` from the command line. This will start a `ipdb` session with
-your classes defined. You can test out the methods that you write here. You are
-also encouraged to use the `seed.py` file to create sample data to test your
-models and relationships.
+your classes defined. You can test out the methods that you write here. 
 
 Writing error-free code is more important than completing all of the
 deliverables listed - prioritize writing methods that work over writing more
@@ -53,64 +36,21 @@ comments describing your progress.
 
 ***
 
-## What You Already Have
-
-The starter code has migrations and models for the initial `Restaurant` and
-`Customer` models, and seed data for some `Restaurant`s and `Customer`s. The
-schema currently looks like this:
-
-### `restaurants` Table
-
-| Column | Type    |
-| ------ | ------- |
-| name   | String  |
-| price  | Integer |
-
-### `customers` Table
-
-| Column     | Type   |
-| ---------- | ------ |
-| first_name | String |
-| last_name  | String |
-
-You will need to create the migration for the `reviews` table using the
-attributes specified in the deliverables below.
-
-***
-
 ## Deliverables
 
-Write the following methods in the classes in the files provided. Feel free to
-build out any helper methods if needed.
+Write the following functionality for the classes in the files provided. Feel free to build out any helper methods if needed.
 
-Remember: SQLAlchemy give your classes access to a lot of methods already!
-Keep in mind what methods SQLAlchemy gives you access to on each of your
-classes when you're approaching the deliverables below.
 
-### Migrations
+- A `Review` belongs to a `Restaurant`, and a `Review` also belongs to an `Customer`.
 
-Before working on the rest of the deliverables, you will need to create a
-migration for the `reviews` table.
-
-- A `Review` belongs to a `Restaurant`, and a `Review` also belongs to an
-  `Customer`. In your migration, create any columns your `reviews` table will
-  need to establish these relationships.
 - The `reviews` table should also have:
   - A `star_rating` column that stores an integer.
 
 After creating the `reviews` table using a migration, use the `seed.py` file to
 create instances of your `Review` class so you can test your code.
 
-**Once you've set up your `reviews` table**, work on building out the following
+**Once you've set up your `reviews` **, work on building out the following
 deliverables.
-
-### Object Relationship Methods
-
-Use SQLAlchemy query methods where
-appropriate.
-
-If you need access to a session when writing a method you can use
-`session = Session.object_session(self)`
 
 #### Review
 
@@ -121,45 +61,44 @@ If you need access to a session when writing a method you can use
 
 #### Restaurant
 
-- `Restaurant reviews()`
+- `Restaurant name`
+  - has a `name` that returns a string
+- `Restaurant price`
+  - has a `price` that returns an integer
+- `Restaurant reviews`
   - returns a collection of all the reviews for the `Restaurant`
-- `Restaurant customers()`
+- `Restaurant customers`
   - returns a collection of all the customers who reviewed the `Restaurant`
 
 #### Customer
-
-- `Customer reviews()`
+- `Customer first_name` 
+  - has a `first_name` that returns a string
+- `Customer last_name`
+  - has a `last_name` that returns a string
+- `Customer reviews`
   - should return a collection of all the reviews that the `Customer` has left
-- `Customer restaurants()`
-  - should return a collection of all the restaurants that the `Customer` has
-    reviewed
+- `Customer restaurants`
+  - should return a collection of all the restaurants that the `Customer` has reviewed
 
-Use `python debug.py` and check that these methods work before proceeding. For
-example, you should be able to call `session.query(Customer).first().restaurants` and see a list
-of the restaurants for the first customer in the database based on your seed
-data; and `session.query(Review).first().customer` should return the customer for the first
-review in the database.
+Use `python debug.py` and check that these methods work before proceeding. 
 
 ### Aggregate and Relationship Methods
 
 #### Customer
 
-- `Customer full_name()`
-  - returns the full name of the customer, with the first name and the last name
-    concatenated, Western style.
-- `Customer favorite_restaurant()`
+- `Customer full_name`
+  - returns the full name of the customer, with the first name and the last name concatenated, Western style.
+- `Customer favorite_restaurant`
   - returns the restaurant instance that has the highest star rating from this customer
 - `Customer add_review(restaurant, rating)`
-  - takes a `restaurant` (an instance of the `Restaurant` class) and a rating
-  - creates a new review for the restaurant
+  - takes a `restaurant` (an instance of the `Restaurant` class) and a rating creates a new review for the restaurant
 - `Customer delete_reviews(restaurant)`
-  - takes a `restaurant` (an instance of the `Restaurant` class) and
-  - removes **all** their reviews for this restaurant
-  - you will have to delete rows from the `reviews` table to get this to work!
+  - takes a `restaurant` (an instance of the `Restaurant` class) and removes **all** their reviews for this restaurant
+  - you will have to delete entries from the `reviews` to get this to work!
 
 #### Review
 
-- `Review full_review()`
+- `Review full_review`
   - should return a string formatted as follows:
 
 ```txt
@@ -168,7 +107,7 @@ Review for {insert restaurant name} by {insert customer's full name}: {insert re
 
 #### Restaurant
 
-- `Restaurant all_reviews()`
+- `Restaurant all_reviews`
   - should return an list of strings with all the reviews for this restaurant
     formatted as follows:
 
