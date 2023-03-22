@@ -54,9 +54,9 @@ deliverables.
 
 #### Review
 
-- `Review customer()`
+- `Review customer`
   - should return the `Customer` instance for this review
-- `Review restaurant()`
+- `Review restaurant`
   - should return the `Restaurant` instance for this review
 
 #### Restaurant
