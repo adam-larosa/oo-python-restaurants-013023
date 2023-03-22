@@ -1,3 +1,38 @@
+
+A restaurant has many reviews
+
+  restaurant -----< review 
+
+
+A customer has many reviews
+
+  customer -----< review
+
+
+
+A review belongs to a restaurant
+
+  review >------ restaurant 
+
+A review belongs to a customer
+
+  review >------ customer
+
+
+
+
+
+                    customer -----< review >------ restaurant
+
+
+
+
+
+
+
+
+
+
 # Phase 3 Code Challenge: Restaurants
 
 For this assignment, we'll be working with a restaurant review domain.
